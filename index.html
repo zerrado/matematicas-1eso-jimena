@@ -110,7 +110,7 @@
     .footer{text-align:center;color:var(--muted);font-size:.86rem;padding:20px 4px}
     :focus-visible{outline:3px solid #795db8;outline-offset:2px}
     @media(max-width:760px){.modes{grid-template-columns:repeat(2,minmax(0,1fr))}.mode{text-align:center;min-height:68px}.answer-row{grid-template-columns:repeat(2,minmax(0,1fr))}.answer-row .answer{grid-column:1/-1}.video-grid{grid-template-columns:1fr}}
-    @media(max-width:540px){.shell{padding:10px 11px 32px}.topline{align-items:flex-start}.brand{font-size:1rem}.brand-icon{width:37px;height:37px;border-radius:13px}.nav{justify-content:flex-end}.nav a{padding:8px 10px;font-size:.79rem}.hero{border-radius:23px;padding:25px 15px}.section{margin:17px 0}.section-heading{display:block}.section-heading p{margin-top:3px}.learn-grid{grid-template-columns:1fr}.learn-card{padding:15px}.story{padding:14px}.practice-card{padding:13px}.mode{padding:10px 6px;min-height:72px}.mode b{font-size:.85rem}.mode span{font-size:.72rem}.exercise{padding:13px}.piece{min-height:46px;border-radius:8px;gap:2px}.bar{gap:3px}.answer-row{gap:8px}.btn{font-size:.9rem;padding:9px 8px}.answer-tip{font-size:.8rem}}
+    @media(max-width:540px){.shell{padding:10px 11px 32px}.topline{align-items:flex-start}.brand{font-size:1rem}.brand-icon{width:37px;height:37px;border-radius:13px}.nav{justify-content:flex-end}.nav a{padding:8px 10px;font-size:.79rem}.hero{border-radius:23px;padding:25px 15px}.section{margin:17px 0}.section-heading{display:block}.section-heading p{margin-top:3px}.learn-grid{grid-template-columns:1fr}.learn-card{padding:15px}.story{padding:14px}.practice-card{padding:13px}.mode{padding:10px 6px;min-height:72px}.mode b{font-size:.85rem}.mode span{font-size:.72rem}.exercise{padding:13px}.piece{min-height:46px;border-radius:8px;gap:2px;font-size:clamp(.58rem,2.8vw,.8rem);overflow:hidden}.bar{gap:3px}.answer-row{gap:8px}.btn{font-size:.9rem;padding:9px 8px}.answer-tip{font-size:.8rem}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   </style>
 </head>
@@ -257,7 +257,7 @@
   };
   const levelNames={easy:"🌱 Suave",medium:"🌼 Intermedio",hard:"🌟 Reto"};
   const levelHelp={easy:"Fracciones pequeñas y números fáciles.",medium:"Un poco más de variedad.",hard:"Denominadores y cantidades mayores."};
-  let mode="part",level="easy",exercise=null,attempts=0,score=0;
+  let mode="part",level="easy",exercise=null,attempts=0,score=0,currentSolved=false;
   const recent=[];
   const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
   const frac=(n,d)=>'<span class="fraction" aria-label="'+n+" sobre "+d+'"><span>'+n+'</span><span>'+d+'</span></span>';
@@ -303,7 +303,7 @@
     let next=null;
     for(let i=0;i<30;i++){next=makeExercise();if(!recent.includes(next.question))break}
     recent.push(next.question);if(recent.length>12)recent.shift();
-    exercise=next;
+    exercise=next;currentSolved=false;
     $("mode-title").textContent=modeInfo[mode].title;
     $("question").innerHTML=exercise.question;
     $("answer").value="";$("feedback").textContent="";$("feedback").className="feedback";
@@ -341,9 +341,10 @@
   $("hint-button").addEventListener("click",showHint);
   $("check").addEventListener("click",()=>{
     if($("answer").value.trim()===""){$("feedback").textContent="Escribe primero tu respuesta 😊";$("feedback").className="feedback try";$("answer").focus();return}
+    if(currentSolved)return;
     attempts++;$("progress").textContent=attempts;
     const value=Number($("answer").value),feedback=$("feedback");
-    if(value===exercise.answer){score++;$("score").textContent=score;feedback.textContent=["¡Exacto! 🌸","¡Lo has conseguido! ✨","¡Muy bien pensado! 🐱"][rand(0,2)];feedback.className="feedback good";showSolution()}
+    if(value===exercise.answer){score++;currentSolved=true;$("score").textContent=score;feedback.textContent=["¡Exacto! 🌸","¡Lo has conseguido! ✨","¡Muy bien pensado! 🐱"][rand(0,2)];feedback.className="feedback good";showSolution()}
     else{feedback.textContent="Casi. Relee qué te preguntan y prueba con la pista 🐾";feedback.className="feedback try"}
   });
   $("answer").addEventListener("keydown",e=>{if(e.key==="Enter")$("check").click()});
