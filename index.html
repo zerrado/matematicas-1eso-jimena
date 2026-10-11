@@ -26,11 +26,11 @@
     .hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(250px,.85fr);align-items:center;background:linear-gradient(125deg,#111936 0%,#1b2e68 66%,#315bd2 100%);border:1px solid #243c83;border-radius:28px;padding:clamp(24px,5vw,50px) clamp(20px,5vw,52px) 0;margin-bottom:20px;box-shadow:0 18px 45px #12205236;color:#fff}
     .hero:before{content:"";position:absolute;width:230px;height:230px;border:34px solid #ffffff0e;border-radius:50%;right:-65px;top:-90px}
     .hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 42px,#ffffff06 43px 45px);pointer-events:none}
-    .hero-copy{position:relative;z-index:2;padding-bottom:clamp(28px,5vw,50px)}
+    .hero-copy{position:relative;z-index:2;grid-column:1;grid-row:1;padding-bottom:clamp(28px,5vw,50px)}
     .hero-tag{display:inline-flex;align-items:center;gap:7px;border-radius:8px;background:var(--lemon);color:#2b3150;padding:7px 12px;font-size:.82rem;font-weight:900;transform:rotate(-1deg)}
     h1{font-size:clamp(2.35rem,7vw,4.7rem);line-height:.96;letter-spacing:-.06em;margin:18px 0 12px;text-transform:uppercase;font-style:italic;text-shadow:4px 4px 0 #3978ed}
     .hero p{max-width:580px;margin:0;color:#e9edff;font-size:clamp(1rem,2.6vw,1.15rem)}
-    .mascot{position:relative;z-index:1;display:block;width:min(100%,390px);height:auto;align-self:end;justify-self:center;filter:drop-shadow(0 14px 22px #080d24aa);animation:bob 3s ease-in-out infinite}
+    .mascot{position:relative;z-index:3;grid-column:2;grid-row:1;display:block;width:min(100%,390px);height:auto;align-self:end;justify-self:center;filter:drop-shadow(0 14px 22px #080d24aa);animation:bob 3s ease-in-out infinite}
     @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
     .hero-chips{display:flex;justify-content:flex-start;gap:8px;flex-wrap:wrap;margin-top:18px}
     .chip{background:#ffffff13;border:1px solid #ffffff38;border-radius:8px;padding:7px 11px;font-size:.83rem;font-weight:800;color:#fff}
@@ -110,7 +110,7 @@
     .video-card a{margin-top:auto;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:900;background:#f4effb;border-radius:12px;padding:10px 12px}
     .footer{text-align:center;color:var(--muted);font-size:.86rem;padding:20px 4px}
     :focus-visible{outline:3px solid #795db8;outline-offset:2px}
-    @media(max-width:760px){.hero{grid-template-columns:1fr;text-align:center;padding-bottom:0}.hero-copy{padding-bottom:0}.hero-chips{justify-content:center}.mascot{width:min(78%,310px);margin-top:4px}.modes{grid-template-columns:repeat(2,minmax(0,1fr))}.mode{text-align:center;min-height:68px}.answer-row{grid-template-columns:repeat(2,minmax(0,1fr))}.answer-row .answer{grid-column:1/-1}.video-grid{grid-template-columns:1fr}}
+    @media(max-width:760px){.hero{grid-template-columns:1fr;text-align:center;padding-bottom:0}.hero-copy{grid-column:1;grid-row:1;padding-bottom:0}.hero-chips{justify-content:center}.mascot{grid-column:1;grid-row:2;width:min(78%,310px);margin-top:4px}.modes{grid-template-columns:repeat(2,minmax(0,1fr))}.mode{text-align:center;min-height:68px}.answer-row{grid-template-columns:repeat(2,minmax(0,1fr))}.answer-row .answer{grid-column:1/-1}.video-grid{grid-template-columns:1fr}}
     @media(max-width:540px){.shell{padding:10px 11px 32px}.topline{align-items:flex-start}.brand{font-size:1rem}.brand-icon{width:37px;height:37px;border-radius:10px}.nav{justify-content:flex-end}.nav a{padding:8px 9px;font-size:.76rem}.hero{border-radius:21px;padding:24px 15px 0}h1{font-size:clamp(2.3rem,14vw,3.5rem)}.mascot{width:min(92%,300px)}.section{margin:17px 0}.section-heading{display:block}.section-heading p{margin-top:3px}.learn-grid{grid-template-columns:1fr}.learn-card{padding:15px}.story{padding:14px}.practice-card{padding:13px}.mode{padding:10px 6px;min-height:72px}.mode b{font-size:.85rem}.mode span{font-size:.72rem}.exercise{padding:13px}.piece{min-height:46px;border-radius:8px;gap:2px;font-size:clamp(.58rem,2.8vw,.8rem);overflow:hidden}.bar{gap:3px}.answer-row{gap:8px}.btn{font-size:.9rem;padding:9px 8px}.answer-tip{font-size:.8rem}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   </style>
