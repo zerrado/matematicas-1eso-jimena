@@ -2,141 +2,352 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff8ec">
-  <title>La aventura de las fracciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff4f8">
+  <meta name="description" content="Explicaciones visuales y ejercicios de fracciones para 1.º de ESO.">
+  <title>FractiMiau · Fracciones paso a paso</title>
   <style>
-    :root{--ink:#243247;--muted:#64748b;--cream:#fff8ec;--paper:#fff;--blue:#d9efff;--blue-strong:#2385c8;--coral:#ffe1d6;--coral-strong:#e87955;--green:#e3f4df;--green-strong:#4b9b58;--yellow:#fff0b5;--line:#e8e2d7;--shadow:0 12px 35px #33415514}
-    *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
-    .wrap{max-width:860px;margin:auto;padding:22px 16px 42px}.hero{text-align:center;padding:20px 10px 16px}.eyebrow{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8b6c38}.hero h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.05;margin:8px 0;color:#263b59}.hero p{max-width:590px;margin:12px auto;color:var(--muted);font-size:1.04rem}
-    .card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow);margin:14px 0}.section-title{margin:0 0 12px;font-size:1.25rem}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.step{background:#f7f8fb;border-radius:16px;padding:14px}.step b{display:block;margin-bottom:5px}.step:nth-child(1){background:var(--blue)}.step:nth-child(2){background:var(--yellow)}.step:nth-child(3){background:var(--green)}
-    .bar{display:flex;gap:5px;margin:14px 0;min-height:45px}.piece{display:flex;align-items:center;justify-content:center;flex:1;min-width:0;border-radius:9px;background:#edf1f5;border:1px solid #dbe2e9;color:#526174;font-weight:800}.piece.blue{background:#9bd7ff;border-color:#60b7ee;color:#164b70}.piece.coral{background:#ffad91;border-color:#ee896b;color:#642b1d}.piece.green{background:#b9e7ac;border-color:#8dcc7c;color:#285638}.legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}.legend span{display:inline-flex;gap:6px;align-items:center}.dot{width:13px;height:13px;border-radius:4px;display:inline-block}.dot.blue{background:#60b7ee}.dot.coral{background:#ee896b}.dot.green{background:#8dcc7c}
-    .modes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.mode{border:1px solid #d7dfeb;background:#fff;border-radius:13px;padding:11px 8px;font:inherit;font-weight:750;color:var(--ink);cursor:pointer}.mode[aria-pressed="true"]{background:#263b59;color:#fff;border-color:#263b59}.mode:hover{transform:translateY(-1px)}
-    .exercise{background:#f8fbff;border:1px solid #dce8f3;border-radius:18px;padding:18px;margin-top:15px}.exercise h3{margin:0 0 8px}.question{font-size:1.22rem;font-weight:750;margin:8px 0 14px}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.answer{font:inherit;font-size:1.1rem;border:2px solid #cbd5e1;border-radius:12px;padding:11px 13px;width:150px;background:white}.answer:focus{outline:3px solid #d9efff;border-color:#2385c8}.btn{font:inherit;font-weight:800;border:0;border-radius:12px;padding:12px 16px;cursor:pointer}.primary{background:#263b59;color:white}.secondary{background:#e9f0f8;color:#263b59}.btn:hover{filter:brightness(.97)}.feedback{min-height:28px;margin:10px 0 0;font-weight:750}.feedback.good{color:#27713a}.feedback.try{color:#9b4b24}.hint{background:#fff5ce;border-left:4px solid #e9bf4a;border-radius:10px;padding:12px 14px;margin-top:12px}.hint[hidden]{display:none}.small{font-size:.94rem;color:var(--muted)}
-    .challenge{background:#fff8f1;border:1px dashed #e9b398;border-radius:17px;padding:16px;margin-top:16px}.challenge h3{margin:0 0 8px}.challenge .bar{max-width:560px}.two-inputs{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}.two-inputs label{display:grid;gap:4px;font-weight:700}.two-inputs input{width:100px}.note{font-size:.91rem;color:var(--muted);margin:12px 0 0}.footer{text-align:center;color:var(--muted);font-size:.87rem;padding:12px}
-    @media(max-width:620px){.wrap{padding:14px 12px 28px}.card{padding:16px}.steps{grid-template-columns:1fr}.modes{grid-template-columns:repeat(2,1fr)}.mode{min-height:52px}.question{font-size:1.12rem}.bar{gap:3px}.piece{font-size:.83rem}}
+    :root{
+      --ink:#332c49;--muted:#68627a;--paper:#fff;--bg:#fff6fa;--pink:#ffe0eb;--pink-strong:#e96996;
+      --lilac:#ebe4ff;--lilac-strong:#8a70d6;--mint:#ddf6e9;--mint-strong:#31966a;--lemon:#fff2c9;
+      --line:#eee5ef;--shadow:0 12px 34px #4d315015;--radius:24px
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:16px}
+    body{margin:0;background:radial-gradient(ellipse at 12% 0%,#ffe5ef 0,transparent 29rem),radial-gradient(ellipse at 95% 18%,#ebe6ff 0,transparent 25rem),var(--bg);color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.52}
+    button,input{font:inherit}
+    a{color:#684fc0}
+    .shell{max-width:1000px;margin:0 auto;padding:clamp(12px,3vw,26px) clamp(12px,3vw,24px) 48px}
+    .topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 2px 18px}
+    .brand{display:flex;align-items:center;gap:9px;font-weight:950;letter-spacing:-.04em;font-size:1.15rem}
+    .brand-icon{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:var(--pink);font-size:1.55rem;box-shadow:0 4px 0 #f7c4d5}
+    .nav{display:flex;gap:7px;flex-wrap:wrap}
+    .nav a{text-decoration:none;font-size:.88rem;font-weight:800;background:#fff;padding:9px 13px;border:1px solid var(--line);border-radius:999px;color:var(--ink)}
+    .hero{position:relative;overflow:hidden;text-align:center;background:linear-gradient(135deg,#fff 10%,#fff2f7 60%,#f4f0ff);border:1px solid #f0dce8;border-radius:30px;padding:clamp(23px,5vw,46px) 18px;margin-bottom:20px;box-shadow:var(--shadow)}
+    .hero:before,.hero:after{content:"✦";position:absolute;color:#f6afc7;font-size:1.8rem}
+    .hero:before{left:7%;top:17%}.hero:after{right:8%;bottom:15%;color:#b5a0f2}
+    .hero-tag{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:var(--lemon);padding:6px 12px;font-size:.82rem;font-weight:900}
+    h1{font-size:clamp(2.05rem,8vw,4rem);line-height:1.04;letter-spacing:-.055em;margin:15px 0 10px}
+    .hero p{max-width:650px;margin:0 auto;color:var(--muted);font-size:clamp(1rem,2.6vw,1.15rem)}
+    .mascot{display:block;font-size:clamp(3.2rem,12vw,5rem);line-height:1.1;margin:12px auto 2px;filter:drop-shadow(0 5px 0 #f4d5e2);animation:bob 3s ease-in-out infinite}
+    @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-5px) rotate(3deg)}}
+    .hero-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:17px}
+    .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-size:.83rem;font-weight:800}
+    .section{margin:22px 0;scroll-margin-top:12px}
+    .section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 2px 12px}
+    h2{margin:0;font-size:clamp(1.45rem,4vw,2rem);letter-spacing:-.035em}
+    .section-heading p{margin:0;color:var(--muted);font-size:.92rem}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(16px,3vw,24px);box-shadow:var(--shadow)}
+    .learn-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    .learn-card{border:1px solid var(--line);border-radius:20px;padding:17px;background:#fff}
+    .learn-card:nth-child(1){background:linear-gradient(145deg,#fff,#fff0f5)}
+    .learn-card:nth-child(2){background:linear-gradient(145deg,#fff,#f4f0ff)}
+    .learn-card:nth-child(3){background:linear-gradient(145deg,#fff,#effbf4)}
+    .learn-card:nth-child(4){background:linear-gradient(145deg,#fff,#fff9e8)}
+    .learn-title{display:flex;align-items:center;gap:9px;margin:0 0 8px;font-size:1.12rem}
+    .learn-emoji{font-size:1.55rem}
+    .learn-card p{margin:7px 0;color:#514b63}
+    .mathline{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;background:#fff;border:1px dashed #e7d9e8;border-radius:13px;padding:8px 11px;font-weight:900;margin:5px 0}
+    .fraction{display:inline-grid;vertical-align:middle;text-align:center;line-height:1.05;font-weight:900;font-size:.92em;min-width:1.05em}
+    .fraction span:first-child{border-bottom:1.5px solid currentColor;padding:0 .12em .08em}
+    .fraction span:last-child{padding:.08em .12em 0}
+    .mini-bar{display:flex;gap:4px;margin:10px 0}
+    .mini-piece{flex:1;min-width:0;min-height:31px;border:1px solid #e7deeb;border-radius:8px;background:#f6f3f8;display:grid;place-items:center;font-size:.8rem;font-weight:900}
+    .mini-piece.pink{background:var(--pink);border-color:#f3c5d5}.mini-piece.lilac{background:var(--lilac);border-color:#d7c9fa}.mini-piece.green{background:var(--mint);border-color:#bde9d0}.mini-piece.gold{background:var(--lemon);border-color:#f1df9f}
+    .callout{border-left:4px solid var(--pink-strong);background:#fff8fb;padding:10px 12px;border-radius:0 13px 13px 0;font-size:.93rem}
+    .story{margin-top:14px;background:#fff;border:1px solid #ecdff1;border-radius:19px;padding:16px}
+    .story h3{margin:0 0 5px}.story p{margin:7px 0;color:#514b63}
+    .story .mini-piece{min-height:38px;font-size:1rem}
+    .note-small{font-size:.86rem;color:var(--muted)}
+
+    .practice-card{background:linear-gradient(155deg,#fff,#fffbfd 55%,#f8f6ff)}
+    .selector-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .selector-label{font-weight:900}
+    .level-select{background:#fff;border:2px solid #e7ddec;border-radius:12px;padding:10px 35px 10px 12px;color:var(--ink);font-weight:850;min-height:46px}
+    .level-help{color:var(--muted);font-size:.88rem}
+    .modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+    .mode{border:1px solid #e7ddec;background:#fff;border-radius:16px;padding:11px 9px;min-height:70px;text-align:left;color:var(--ink);cursor:pointer;transition:transform .15s,border-color .15s,background .15s}
+    .mode:hover{transform:translateY(-2px)}
+    .mode[aria-pressed="true"]{background:#fae8f1;border:2px solid var(--pink-strong);padding:10px 8px;box-shadow:0 4px 0 #f4cada}
+    .mode b{display:block;font-size:.93rem;line-height:1.2}.mode span{display:block;color:var(--muted);font-size:.75rem;margin-top:4px}
+    .mode-icon{font-size:1.2rem;margin-right:4px}
+    .exercise{margin-top:15px;background:#fff;border:1px solid #ede3f0;border-radius:21px;padding:clamp(15px,3vw,22px)}
+    .exercise-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+    .level-pill,.counter{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;font-size:.8rem;font-weight:900}
+    .level-pill{background:var(--lilac)}.counter{background:var(--mint)}
+    .question{font-size:clamp(1.16rem,3.5vw,1.55rem);line-height:1.35;margin:14px 0 8px;font-weight:900}
+    .question .fraction{font-size:.84em}
+    .bar{display:flex;gap:5px;margin:14px 0 8px;min-height:54px}
+    .piece{flex:1;min-width:0;border-radius:11px;border:1px solid #e5dfe9;background:#f4f1f6;display:grid;place-items:center;font-size:clamp(.75rem,3vw,1.2rem);font-weight:900;color:#5a526a;transition:background .2s,transform .2s}
+    .piece.pink{background:var(--pink);border-color:#f1bdd0;color:#a34569}
+    .piece.lilac{background:var(--lilac);border-color:#d5c6fb;color:#654ca8}
+    .piece.green{background:var(--mint);border-color:#bce8cf;color:#28734d}
+    .piece.gold{background:var(--lemon);border-color:#ecd88d;color:#8a6d17}
+    .legend{display:flex;gap:8px 14px;flex-wrap:wrap;color:var(--muted);font-size:.83rem}
+    .legend span{display:inline-flex;align-items:center;gap:6px}
+    .swatch{width:12px;height:12px;border-radius:4px;background:#ddd;display:inline-block}
+    .swatch.pink{background:#f3b8ce}.swatch.lilac{background:#cdbbfa}.swatch.green{background:#a9e2bf}.swatch.gold{background:#f2dd91}
+    .answer-row{display:grid;grid-template-columns:minmax(100px,180px) 1fr 1fr 1.3fr;gap:9px;margin-top:16px}
+    .answer{width:100%;min-height:49px;border:2px solid #e0d6e5;border-radius:13px;padding:10px 12px;background:#fff;font-size:1.1rem;font-weight:800}
+    .answer:focus{outline:3px solid #f9d9e6;border-color:var(--pink-strong)}
+    .btn{border:0;border-radius:13px;min-height:49px;padding:10px 13px;font-weight:900;cursor:pointer;transition:transform .15s,filter .15s}
+    .btn:hover{transform:translateY(-1px);filter:brightness(.98)}
+    .btn.primary{background:#785bb8;color:white;box-shadow:0 4px 0 #5f4698}
+    .btn.soft{background:#f4effb;color:#544278;border:1px solid #e5daf6}
+    .btn.next{background:#ffebd2;color:#6d4a1c;border:1px solid #f4d7ac}
+    .feedback{min-height:28px;margin:12px 0 0;font-weight:850}.feedback.good{color:#228353}.feedback.try{color:#a64d65}
+    .hint-box,.solution{margin-top:11px;border-radius:14px;padding:12px 14px;background:#fff8e2;border:1px solid #f1e2b5}
+    .hint-box[hidden],.solution[hidden]{display:none}
+    .hint-box strong,.solution h3{display:block;margin:0 0 4px}
+    .solution{background:#f7f3ff;border-color:#e1d7fa}
+    .solution ol{margin:7px 0 0;padding-left:23px}.solution li{padding:3px 0}
+    .answer-tip{font-size:.84rem;color:var(--muted);margin:7px 1px 0}
+    .video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    .video-card{border-radius:19px;border:1px solid var(--line);background:#fff;padding:17px;display:flex;flex-direction:column;align-items:flex-start}
+    .video-card .play{width:45px;height:45px;border-radius:15px;display:grid;place-items:center;background:#ffe7ef;color:#cc527d;font-size:1.35rem;margin-bottom:10px}
+    .video-card h3{font-size:1.05rem;line-height:1.25;margin:0 0 6px}.video-card p{color:var(--muted);margin:0 0 13px;font-size:.91rem}
+    .video-card a{margin-top:auto;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:900;background:#f4effb;border-radius:12px;padding:10px 12px}
+    .footer{text-align:center;color:var(--muted);font-size:.86rem;padding:20px 4px}
+    :focus-visible{outline:3px solid #795db8;outline-offset:2px}
+    @media(max-width:760px){.modes{grid-template-columns:repeat(2,minmax(0,1fr))}.mode{text-align:center;min-height:68px}.answer-row{grid-template-columns:repeat(2,minmax(0,1fr))}.answer-row .answer{grid-column:1/-1}.video-grid{grid-template-columns:1fr}}
+    @media(max-width:540px){.shell{padding:10px 11px 32px}.topline{align-items:flex-start}.brand{font-size:1rem}.brand-icon{width:37px;height:37px;border-radius:13px}.nav{justify-content:flex-end}.nav a{padding:8px 10px;font-size:.79rem}.hero{border-radius:23px;padding:25px 15px}.section{margin:17px 0}.section-heading{display:block}.section-heading p{margin-top:3px}.learn-grid{grid-template-columns:1fr}.learn-card{padding:15px}.story{padding:14px}.practice-card{padding:13px}.mode{padding:10px 6px;min-height:72px}.mode b{font-size:.85rem}.mode span{font-size:.72rem}.exercise{padding:13px}.piece{min-height:46px;border-radius:8px;gap:2px}.bar{gap:3px}.answer-row{gap:8px}.btn{font-size:.9rem;padding:9px 8px}.answer-tip{font-size:.8rem}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <header class="hero">
-      <div class="eyebrow">Un ratito de mates, a tu ritmo</div>
-      <h1>La aventura de las fracciones</h1>
-      <p>Primero dibujamos la cantidad. Después elegimos la operación. ¡Vamos paso a paso!</p>
-    </header>
+<main class="shell">
+  <div class="topline">
+    <div class="brand"><span class="brand-icon" aria-hidden="true">🐱</span> FractiMiau</div>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#aprende">Aprender</a><a href="#practica">Practicar</a><a href="#videos">Vídeos</a>
+    </nav>
+  </div>
 
-    <section class="card" aria-labelledby="idea-title">
-      <h2 class="section-title" id="idea-title">La idea que siempre ayuda</h2>
-      <div class="steps">
-        <div class="step"><b>1. Encuentra el todo</b>¿Qué cantidad representa la barra entera?</div>
-        <div class="step"><b>2. Mira la fracción</b>El número de abajo dice en cuántas partes iguales se reparte.</div>
-        <div class="step"><b>3. Lee la pregunta</b>¿Buscas una parte, el total o lo que queda?</div>
+  <header class="hero">
+    <span class="hero-tag">🌸 Mates sin agobios · 1.º ESO</span>
+    <span class="mascot" role="img" aria-label="Gatita profesora">🐱</span>
+    <h1>La aventura de las fracciones</h1>
+    <p>Primero entendemos qué nos preguntan. Luego lo dibujamos y calculamos un pasito cada vez. ¡Tú puedes!</p>
+    <div class="hero-chips"><span class="chip">🍓 Ejercicios por niveles</span><span class="chip">✨ Pistas paso a paso</span><span class="chip">📱 Hecha para móvil</span></div>
+  </header>
+
+  <section class="section" id="aprende" aria-labelledby="learn-heading">
+    <div class="section-heading"><h2 id="learn-heading">🌷 Antes de empezar: ¿qué buscamos?</h2><p>Hay cuatro preguntas distintas.</p></div>
+    <div class="card">
+      <div class="learn-grid">
+        <article class="learn-card">
+          <h3 class="learn-title"><span class="learn-emoji">🍰</span> 1. Calcular una parte</h3>
+          <p>«¿Cuánto es <b>2/3 de 12</b>?»</p>
+          <div class="mini-bar" aria-label="Dos de tres partes coloreadas"><span class="mini-piece pink">🍬🍬🍬🍬</span><span class="mini-piece pink">🍬🍬🍬🍬</span><span class="mini-piece">🍬🍬🍬🍬</span></div>
+          <p>El <b>3</b> de abajo reparte los 12 caramelos en 3 grupos iguales. El <b>2</b> de arriba dice que cogemos 2 grupos.</p>
+          <div class="mathline">12 ÷ 3 = 4 <span>y</span> 4 × 2 = 8</div>
+          <p class="note-small">Cada grupo tiene 4. Dos grupos tienen 8.</p>
+        </article>
+        <article class="learn-card">
+          <h3 class="learn-title"><span class="learn-emoji">🔎</span> 2. Averiguar el total</h3>
+          <p>«<b>3/4</b> de las pegatinas son <b>6</b>. ¿Cuántas hay en total?»</p>
+          <div class="mini-bar" aria-label="Cuatro partes iguales, tres forman la parte conocida"><span class="mini-piece lilac">2</span><span class="mini-piece lilac">2</span><span class="mini-piece lilac">2</span><span class="mini-piece">2</span></div>
+          <p>Esas 6 pegatinas son 3 grupos: <b>6 ÷ 3 = 2</b> en cada grupo. El total tiene 4 grupos: <b>2 × 4 = 8</b>.</p>
+          <div class="mathline">6 ÷ 3 × 4 = 8</div>
+          <p class="note-small">Como conocemos solo una parte, deshacemos los pasos para reconstruir el todo.</p>
+        </article>
+        <article class="learn-card">
+          <h3 class="learn-title"><span class="learn-emoji">🧁</span> 3. Calcular lo que queda</h3>
+          <p>«Hay 12 galletas. Se comen <b>1/3</b>. ¿Cuántas quedan?»</p>
+          <div class="mini-bar" aria-label="Una parte comida y dos partes que quedan"><span class="mini-piece pink">comida</span><span class="mini-piece green">queda</span><span class="mini-piece green">queda</span></div>
+          <p>Si se va 1 de las 3 partes, quedan <b>2 de las 3</b>. Cada parte vale 12 ÷ 3 = 4; quedan 2 × 4 = 8.</p>
+          <div class="mathline">12 − 4 = 8</div>
+          <p class="note-small">Restamos lo que se ha comido, o calculamos directamente la fracción que falta.</p>
+        </article>
+        <article class="learn-card">
+          <h3 class="learn-title"><span class="learn-emoji">🍡</span> 4. Una fracción de lo que queda</h3>
+          <p>«Hay 20 caramelos. Se come <b>1/4</b>; después, otra persona come <b>2/3 de lo que queda</b>.»</p>
+          <div class="mini-bar" aria-label="Una parte comida primero, dos de las tres partes restantes después y una que queda"><span class="mini-piece pink">1.º</span><span class="mini-piece lilac">2.º</span><span class="mini-piece lilac">2.º</span><span class="mini-piece green">queda</span></div>
+          <p>Primero: 20 ÷ 4 = 5. Quedan 20 − 5 = 15. Después: 15 ÷ 3 = 5 por grupo; coge 2 grupos: 5 × 2 = 10.</p>
+          <div class="callout"><b>La clave es «de lo que queda»:</b> primero restamos para encontrar el nuevo total; después calculamos la fracción de ese nuevo total.</div>
+        </article>
       </div>
-    </section>
+      <article class="story">
+        <h3>⭐ El problema 28: la tarta de Jacinto y Gabriela</h3>
+        <p>La tarta tiene 7 trozos. Jacinto come 2/7; Gabriela come 3/5 de los trozos que quedan.</p>
+        <div class="mini-bar" aria-label="Dos trozos de Jacinto, tres de Gabriela y dos que quedan"><span class="mini-piece pink">J</span><span class="mini-piece pink">J</span><span class="mini-piece lilac">G</span><span class="mini-piece lilac">G</span><span class="mini-piece lilac">G</span><span class="mini-piece green">✓</span><span class="mini-piece green">✓</span></div>
+        <p>Jacinto deja 5 trozos. Gabriela toma 3 de esos 5. Así que Gabriela come 3 trozos de los 7 originales, es decir <b>3/7 de la tarta</b>. Quedan 2/7.</p>
+      </article>
+    </div>
+  </section>
 
-    <section class="card" aria-labelledby="practice-title">
-      <h2 class="section-title" id="practice-title">Elige qué quieres practicar</h2>
-      <div class="modes" role="group" aria-label="Tipo de ejercicio">
-        <button class="mode" data-mode="part" aria-pressed="true">Calcular una parte</button>
-        <button class="mode" data-mode="total" aria-pressed="false">Averiguar el total</button>
-        <button class="mode" data-mode="left" aria-pressed="false">Calcular lo que queda</button>
-        <button class="mode" data-mode="rest" aria-pressed="false">Fracción del resto</button>
+  <section class="section" id="practica" aria-labelledby="practice-heading">
+    <div class="section-heading"><h2 id="practice-heading">🎮 ¡A practicar!</h2><p>Los ejercicios cambian cada vez y puedes hacer tantos como quieras.</p></div>
+    <div class="card practice-card">
+      <div class="selector-row">
+        <label class="selector-label" for="level-select">Elige nivel:</label>
+        <select class="level-select" id="level-select">
+          <option value="easy">🌱 Suave — para hacer mentalmente</option>
+          <option value="medium">🌼 Intermedio</option>
+          <option value="hard">🌟 Reto</option>
+        </select>
+        <span class="level-help" id="level-help">Fracciones pequeñas y números fáciles.</span>
+      </div>
+      <div class="modes" role="group" aria-label="Tipo de problema">
+        <button class="mode" data-mode="part" aria-pressed="true"><b><span class="mode-icon">🍓</span>Calcular una parte</b><span>Conozco el total</span></button>
+        <button class="mode" data-mode="total" aria-pressed="false"><b><span class="mode-icon">🔎</span>Averiguar el total</b><span>Conozco una parte</span></button>
+        <button class="mode" data-mode="left" aria-pressed="false"><b><span class="mode-icon">🧁</span>Calcular lo que queda</b><span>Después de quitar</span></button>
+        <button class="mode" data-mode="rest" aria-pressed="false"><b><span class="mode-icon">🍡</span>Fracción del resto</b><span>Dos pasos</span></button>
       </div>
 
       <div class="exercise" aria-live="polite">
-        <div id="level" class="eyebrow">Una parte de una cantidad</div>
-        <h3 id="question">¿Cuánto es 3/5 de 20 caramelos?</h3>
-        <div id="bar" class="bar" aria-label="Dibujo de la cantidad"></div>
+        <div class="exercise-top"><span class="level-pill" id="mode-title">🍓 Una parte de una cantidad</span><span class="counter">✨ <span id="progress">0</span> intentos · <span id="score">0</span> aciertos</span></div>
+        <div class="question" id="question"></div>
+        <div class="bar" id="bar" role="img" aria-label="Dibujo de las partes iguales"></div>
         <div class="legend" id="legend"></div>
-        <p class="small" id="hint-intro">Escribe solo el número. Si te atascas, pide una pista.</p>
-        <div class="row">
-          <input id="answer" class="answer" type="number" inputmode="numeric" aria-label="Tu respuesta" placeholder="Respuesta">
-          <button id="check" class="btn primary">Comprobar</button>
-          <button id="hint-button" class="btn secondary">Dame una pista</button>
-          <button id="next" class="btn secondary">Otro ejercicio</button>
+        <p class="answer-tip">Piensa primero: ¿qué conozco y qué me están preguntando?</p>
+        <div class="answer-row">
+          <input class="answer" id="answer" type="number" inputmode="numeric" pattern="[0-9]*" aria-label="Escribe la respuesta como número entero" placeholder="Tu respuesta">
+          <button class="btn primary" id="check">Comprobar 💫</button>
+          <button class="btn soft" id="hint-button">Una pista 🐾</button>
+          <button class="btn next" id="next">Otro ejercicio ↻</button>
         </div>
-        <p id="feedback" class="feedback" role="status"></p>
-        <div id="hint" class="hint" hidden></div>
+        <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+        <div class="hint-box" id="hint" hidden></div>
+        <div class="solution" id="solution" hidden></div>
       </div>
+      <p class="note-small">Empieza en «Suave»: aparecen fracciones pequeñas como 1/2, 1/3 y 1/4 para practicar de cabeza. Cada tipo tiene ejercicios en los tres niveles.</p>
+    </div>
+  </section>
 
-      <div class="challenge">
-        <h3>Reto: la tarta del problema 28</h3>
-        <p>Jacinto come <b>2/7</b> de la tarta. Gabriela come <b>3/5 de lo que queda</b>.</p>
-        <div class="bar" aria-label="Dos trozos para Jacinto, tres para Gabriela y dos que quedan">
-          <span class="piece blue">J</span><span class="piece blue">J</span>
-          <span class="piece coral">G</span><span class="piece coral">G</span><span class="piece coral">G</span>
-          <span class="piece green">✓</span><span class="piece green">✓</span>
-        </div>
-        <div class="legend"><span><i class="dot blue"></i>Jacinto: 2/7</span><span><i class="dot coral"></i>Gabriela: 3/7</span><span><i class="dot green"></i>Quedan: 2/7</span></div>
-        <p>Quedan 5 trozos. Gabriela coge 3 de esos 5; cada trozo es 1/7 de la tarta entera.</p>
-        <p><b>Lo que come:</b> 3/5 × 5/7 = 3/7. <b>Lo que queda:</b> 5/7 − 3/7 = 2/7.</p>
-      </div>
-    </section>
-    <p class="footer">Puedes practicar sin prisa: equivocarse también sirve para aprender.</p>
-  </main>
+  <section class="section" id="videos" aria-labelledby="videos-heading">
+    <div class="section-heading"><h2 id="videos-heading">🎬 Vídeos para verlo explicado</h2><p>Enlaces en español; empieza por el cortito.</p></div>
+    <div class="video-grid">
+      <article class="video-card">
+        <span class="play" aria-hidden="true">▶</span>
+        <h3>Fracción de una cantidad · 2 min</h3>
+        <p>Vídeo educativo de EducaMadrid. Explica cómo repartir entre el denominador y tomar las partes del numerador. Ideal para empezar.</p>
+        <a href="https://mediateca.educa.madrid.org/video/spkreuv8fubugvep" target="_blank" rel="noopener noreferrer">Ver vídeo ↗</a>
+      </article>
+      <article class="video-card">
+        <span class="play" aria-hidden="true">▶</span>
+        <h3>La fracción como operador · clase completa</h3>
+        <p>Repasa parte, total y fracción. Para hallar el total, ve directamente al minuto 17:28; antes recuerda cómo calcular una parte.</p>
+        <a href="https://mediateca.educa.madrid.org/video/5x8ebngbduxqb6or" target="_blank" rel="noopener noreferrer">Ver vídeo · ir al 17:28 ↗</a>
+      </article>
+      <article class="video-card">
+        <span class="play" aria-hidden="true">▶</span>
+        <h3>Calcular una parte con dibujo</h3>
+        <p>Explicación gráfica de cómo encontrar una fracción de una cantidad, seguida de ejemplos.</p>
+        <a href="https://www.youtube.com/watch?v=EiW96eLB5V0" target="_blank" rel="noopener noreferrer">Ver vídeo ↗</a>
+      </article>
+      <article class="video-card">
+        <span class="play" aria-hidden="true">▶</span>
+        <h3>Averiguar el total conociendo una parte</h3>
+        <p>Empieza con un dibujo para entender por qué se reconstruye el total a partir de la parte conocida.</p>
+        <a href="https://www.youtube.com/watch?v=yS7qUFMxmUU" target="_blank" rel="noopener noreferrer">Ver vídeo ↗</a>
+      </article>
+    </div>
+  </section>
+  <footer class="footer">Hecho con mucho cariño para Jimena 🌸 · Equivocarse también es parte de aprender.</footer>
+</main>
 
-  <script>
-    const $ = (id) => document.getElementById(id);
-    const names = { part: 'Una parte de una cantidad', total: 'Averiguar el total', left: 'Calcular lo que queda', rest: 'Una fracción de lo que queda' };
-    let mode = 'part';
-    let exercise = null;
-    const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-    function makeExercise() {
-      if (mode === 'part') {
-        const d = rand(2, 6), n = rand(1, d - 1), unit = rand(2, 10), total = d * unit;
-        return { d, n, total, answer: n * unit, question: `¿Cuánto es ${n}/${d} de ${total} caramelos?`, hint: `Divide los ${total} caramelos en ${d} grupos iguales: ${total} ÷ ${d} = ${unit}. Después coge ${n} grupos: ${unit} × ${n} = ${n * unit}.`, colors: ['blue', n, d] };
-      }
-      if (mode === 'total') {
-        const d = rand(2, 6), n = rand(1, d - 1), unit = rand(2, 10), part = n * unit, total = d * unit;
-        return { d, n, part, answer: total, question: `${n}/${d} de una cantidad son ${part}. ¿Cuál es la cantidad entera?`, hint: `${part} representa ${n} partes. Una parte vale ${part} ÷ ${n} = ${unit}. El total tiene ${d} partes: ${unit} × ${d} = ${total}.`, colors: ['coral', n, d] };
-      }
-      if (mode === 'left') {
-        const d = rand(2, 6), n = rand(1, d - 1), unit = rand(2, 10), total = d * unit, remain = (d - n) * unit;
-        return { d, n, total, answer: remain, question: `Hay ${total} galletas. Se comen ${n}/${d}. ¿Cuántas quedan?`, hint: `Si se comen ${n} partes de ${d}, quedan ${d - n} partes. Cada parte vale ${total} ÷ ${d} = ${unit}. Quedan ${d - n} × ${unit} = ${remain} galletas.`, colors: ['green', d - n, d], remain };
-      }
-      const d = 7, first = 2, rest = d - first, second = 3, unit = rand(2, 8), total = d * unit;
-      return { d, n: second, first, total, answer: second * unit, question: `Hay ${total} caramelos. Se comen ${first}/${d}; después, otra persona come 3/5 de lo que queda. ¿Cuántos caramelos come?`, hint: `Al principio, cada una de las ${d} partes tiene ${unit} caramelos. Después de quitar ${first}/${d}, quedan ${rest} partes. Como 3/5 de ${rest} partes son 3 partes, come 3 × ${unit} = ${second * unit} caramelos.` };
+<script>
+  const $ = id => document.getElementById(id);
+  const modeInfo = {
+    part:{title:"🍓 Una parte de una cantidad",name:"caramelos"},
+    total:{title:"🔎 Averiguar el total",name:"pegatinas"},
+    left:{title:"🧁 Calcular lo que queda",name:"galletas"},
+    rest:{title:"🍡 Una fracción de lo que queda",name:"caramelos"}
+  };
+  const levelNames={easy:"🌱 Suave",medium:"🌼 Intermedio",hard:"🌟 Reto"};
+  const levelHelp={easy:"Fracciones pequeñas y números fáciles.",medium:"Un poco más de variedad.",hard:"Denominadores y cantidades mayores."};
+  let mode="part",level="easy",exercise=null,attempts=0,score=0;
+  const recent=[];
+  const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+  const frac=(n,d)=>'<span class="fraction" aria-label="'+n+" sobre "+d+'"><span>'+n+'</span><span>'+d+'</span></span>';
+  const denomFor=()=>level==="easy"?[2,3,4][rand(0,2)]:level==="medium"?[4,5,6,8][rand(0,3)]:[6,7,8,9,10,12][rand(0,5)];
+  const unitFor=()=>level==="easy"?rand(1,5):level==="medium"?rand(3,9):rand(6,15);
+  function makeExercise(){
+    if(mode==="rest"){
+      const d=level==="easy"?[4,5][rand(0,1)]:level==="medium"?[5,6,7][rand(0,2)]:[7,8,9,10][rand(0,3)];
+      const first=level==="easy"?1:rand(1,d-2),remaining=d-first,second=rand(1,remaining-1),unit=unitFor(),total=d*unit;
+      return{mode,d,first,remaining,second,unit,total,answer:second*unit,
+        question:'Hay <b>'+total+'</b> '+modeInfo.rest.name+'. Primero se apartan '+frac(first,d)+' del total; luego se toma '+frac(second,remaining)+' de lo que queda. ¿Cuántos caramelos se toman en segundo lugar?',
+        hint:"Primero averigua cuántos caramelos quedan después de apartar "+frac(first,d)+". La segunda fracción se aplica solo a esa cantidad.",
+        steps:["El total se divide en "+d+" partes iguales: "+total+" ÷ "+d+" = "+unit+" caramelos por parte.",
+          "La primera persona aparta "+first+" partes. Quedan "+d+" − "+first+" = "+remaining+" partes, es decir, "+remaining+" × "+unit+" = "+(remaining*unit)+" caramelos.",
+          frac(second,remaining)+" de las "+remaining+" partes que quedan son "+second+" partes: "+unit+" × "+second+" = "+(second*unit)+" caramelos."],
+        labels:["Primero aparta","Toma la segunda persona","Queda"]};
     }
-
-    function drawBar() {
-      const bar = $('bar'); bar.replaceChildren();
-      for (let i = 0; i < exercise.d; i++) {
-        const cell = document.createElement('span'); cell.className = 'piece';
-        if (mode === 'part' && i < exercise.n) cell.classList.add('blue');
-        if (mode === 'total' && i < exercise.n) cell.classList.add('coral');
-        if (mode === 'left') cell.classList.add(i < exercise.n ? 'coral' : 'green');
-        if (mode === 'rest') cell.classList.add(i < exercise.first ? 'blue' : (i < exercise.first + exercise.n ? 'coral' : 'green'));
-        cell.textContent = mode === 'left' && i >= exercise.n ? '✓' : (mode === 'rest' ? (i < exercise.first ? 'J' : (i < exercise.first + exercise.n ? 'G' : '✓')) : '');
-        bar.appendChild(cell);
-      }
-      const l = $('legend'); l.replaceChildren();
-      const items = mode === 'part' ? [['blue','Parte que buscamos'],['','Toda la cantidad']] : mode === 'total' ? [['coral','Parte conocida'],['','Total desconocido']] : mode === 'left' ? [['coral','Comido'],['green','Queda']] : [['blue','Primera persona'],['coral','Segunda persona'],['green','Queda']];
-      for (const [color, label] of items) { const span=document.createElement('span'); span.innerHTML=`<i class="dot ${color}"></i>${label}`; l.appendChild(span); }
+    const d=denomFor(),n=rand(1,d-1),unit=unitFor(),total=d*unit,part=n*unit;
+    if(mode==="part")return{mode,d,n,unit,total,answer:part,
+      question:'¿Cuántos '+modeInfo.part.name+' son '+frac(n,d)+' de <b>'+total+'</b>?',
+      hint:"El denominador "+d+" te dice en cuántos grupos iguales repartir los "+total+". Luego coge "+n+" de esos grupos.",
+      steps:["Repartimos el total en "+d+" grupos iguales: "+total+" ÷ "+d+" = "+unit+" en cada grupo.",
+        "El numerador "+n+" indica que cogemos "+n+" grupos: "+unit+" × "+n+" = "+part+".",
+        "Respuesta: "+frac(n,d)+" de "+total+" son "+part+" "+modeInfo.part.name+"."],
+      labels:["Parte que buscamos","Toda la cantidad"]};
+    if(mode==="total")return{mode,d,n,unit,part,answer:total,
+      question:frac(n,d)+' de las pegatinas son <b>'+part+'</b>. ¿Cuántas pegatinas hay en total?',
+      hint:"La parte conocida, "+part+", está formada por "+n+" grupos iguales. Averigua cuánto vale un grupo y reconstruye los "+d+" grupos.",
+      steps:["Los "+part+" conocidos representan "+n+" grupos. Cada grupo vale "+part+" ÷ "+n+" = "+unit+".",
+        "El total tiene "+d+" grupos iguales: "+unit+" × "+d+" = "+total+".",
+        "Respuesta: en total hay "+total+" pegatinas. También puedes escribirlo como "+part+" ÷ "+frac(n,d)+" = "+total+"."],
+      labels:["Parte conocida","Total desconocido"]};
+    const rest=d-n;
+    return{mode,d,n,unit,total,answer:rest*unit,
+      question:'Hay <b>'+total+'</b> galletas. Se comen '+frac(n,d)+' del total. ¿Cuántas galletas quedan?',
+      hint:"Si el total tiene "+d+" partes y se comen "+n+", ¿cuántas partes quedan? Cada parte tiene "+unit+" galletas.",
+      steps:["El denominador "+d+" divide las "+total+" galletas en partes iguales: "+total+" ÷ "+d+" = "+unit+" por parte.",
+        "Se comen "+n+" partes; quedan "+d+" − "+n+" = "+rest+" partes.",
+        "Calculamos lo que queda: "+rest+" × "+unit+" = "+(rest*unit)+" galletas."],
+      labels:["Comido","Queda"],rest};
+  }
+  function newExercise(){
+    let next=null;
+    for(let i=0;i<30;i++){next=makeExercise();if(!recent.includes(next.question))break}
+    recent.push(next.question);if(recent.length>12)recent.shift();
+    exercise=next;
+    $("mode-title").textContent=modeInfo[mode].title;
+    $("question").innerHTML=exercise.question;
+    $("answer").value="";$("feedback").textContent="";$("feedback").className="feedback";
+    $("hint").hidden=true;$("solution").hidden=true;
+    drawBar();$("answer").focus({preventScroll:true});
+  }
+  function drawBar(){
+    const bar=$("bar");bar.replaceChildren();
+    const legend=$("legend");legend.replaceChildren();
+    for(let i=0;i<exercise.d;i++){
+      const cell=document.createElement("span");cell.className="piece";
+      let label="";
+      if(mode==="part"){if(i<exercise.n){cell.classList.add("pink");label="🍓"}}
+      if(mode==="total"){if(i<exercise.n){cell.classList.add("lilac");label="★"}}
+      if(mode==="left"){cell.classList.add(i<exercise.n?"pink":"green");label=i<exercise.n?"×":"✓"}
+      if(mode==="rest"){if(i<exercise.first){cell.classList.add("pink");label="1.º"}else if(i<exercise.first+exercise.second){cell.classList.add("lilac");label="2.º"}else{cell.classList.add("green");label="✓"}}
+      cell.textContent=label;cell.setAttribute("aria-hidden","true");bar.appendChild(cell);
     }
-
-    function loadExercise() {
-      exercise = makeExercise();
-      $('level').textContent = names[mode]; $('question').textContent = exercise.question;
-      $('answer').value = ''; $('feedback').textContent = ''; $('feedback').className = 'feedback';
-      $('hint').hidden = true; $('hint').textContent = ''; drawBar(); $('answer').focus({preventScroll:true});
-    }
-    document.querySelectorAll('.mode').forEach(btn => btn.addEventListener('click', () => {
-      mode = btn.dataset.mode;
-      document.querySelectorAll('.mode').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-      loadExercise();
-    }));
-    $('next').addEventListener('click', loadExercise);
-    $('hint-button').addEventListener('click', () => { $('hint').textContent = exercise.hint; $('hint').hidden = false; });
-    $('check').addEventListener('click', () => {
-      const value = Number($('answer').value);
-      const feedback = $('feedback');
-      if ($('answer').value.trim() === '') { feedback.textContent = 'Escribe primero tu respuesta.'; feedback.className = 'feedback try'; return; }
-      if (value === exercise.answer) { feedback.textContent = '¡Exacto! Has identificado bien qué te preguntan.'; feedback.className = 'feedback good'; $('hint').textContent = exercise.hint; $('hint').hidden = false; }
-      else { feedback.textContent = 'Aún no. Mira la barra y prueba una pista.'; feedback.className = 'feedback try'; }
-    });
-    $('answer').addEventListener('keydown', e => { if (e.key === 'Enter') $('check').click(); });
-    loadExercise();
-  </script>
+    const items=mode==="part"?[["pink","Parte que buscamos"],["","Toda la cantidad"]]:
+      mode==="total"?[["lilac","Parte conocida"],["","Total desconocido"]]:
+      mode==="left"?[["pink","Comido"],["green","Queda"]]:
+      [["pink","Primera parte"],["lilac","Fracción del resto"],["green","Resto final"]];
+    items.forEach(item=>{const span=document.createElement("span");span.innerHTML='<i class="swatch '+item[0]+'"></i>'+item[1];legend.appendChild(span)});
+    bar.setAttribute("aria-label","La barra tiene "+exercise.d+" partes iguales; los colores muestran qué partes se toman y cuáles quedan.");
+  }
+  function showHint(){const h=$("hint");h.innerHTML="<strong>🐾 Pista</strong>"+exercise.hint;h.hidden=false}
+  function showSolution(){
+    const box=$("solution");box.innerHTML="<h3>✨ Vamos paso a paso</h3><ol>"+exercise.steps.map(s=>"<li>"+s+"</li>").join("")+"</ol>";box.hidden=false;
+  }
+  document.querySelectorAll(".mode").forEach(btn=>btn.addEventListener("click",()=>{
+    mode=btn.dataset.mode;document.querySelectorAll(".mode").forEach(b=>b.setAttribute("aria-pressed",String(b===btn)));newExercise();
+  }));
+  $("level-select").addEventListener("change",e=>{level=e.target.value;$("level-help").textContent=levelHelp[level];newExercise()});
+  $("next").addEventListener("click",newExercise);
+  $("hint-button").addEventListener("click",showHint);
+  $("check").addEventListener("click",()=>{
+    if($("answer").value.trim()===""){$("feedback").textContent="Escribe primero tu respuesta 😊";$("feedback").className="feedback try";$("answer").focus();return}
+    attempts++;$("progress").textContent=attempts;
+    const value=Number($("answer").value),feedback=$("feedback");
+    if(value===exercise.answer){score++;$("score").textContent=score;feedback.textContent=["¡Exacto! 🌸","¡Lo has conseguido! ✨","¡Muy bien pensado! 🐱"][rand(0,2)];feedback.className="feedback good";showSolution()}
+    else{feedback.textContent="Casi. Relee qué te preguntan y prueba con la pista 🐾";feedback.className="feedback try"}
+  });
+  $("answer").addEventListener("keydown",e=>{if(e.key==="Enter")$("check").click()});
+  newExercise();
+</script>
 </body>
 </html>
