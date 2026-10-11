@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8ec">
+  <title>La aventura de las fracciones</title>
+  <style>
+    :root{--ink:#243247;--muted:#64748b;--cream:#fff8ec;--paper:#fff;--blue:#d9efff;--blue-strong:#2385c8;--coral:#ffe1d6;--coral-strong:#e87955;--green:#e3f4df;--green-strong:#4b9b58;--yellow:#fff0b5;--line:#e8e2d7;--shadow:0 12px 35px #33415514}
+    *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+    .wrap{max-width:860px;margin:auto;padding:22px 16px 42px}.hero{text-align:center;padding:20px 10px 16px}.eyebrow{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8b6c38}.hero h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.05;margin:8px 0;color:#263b59}.hero p{max-width:590px;margin:12px auto;color:var(--muted);font-size:1.04rem}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow);margin:14px 0}.section-title{margin:0 0 12px;font-size:1.25rem}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.step{background:#f7f8fb;border-radius:16px;padding:14px}.step b{display:block;margin-bottom:5px}.step:nth-child(1){background:var(--blue)}.step:nth-child(2){background:var(--yellow)}.step:nth-child(3){background:var(--green)}
+    .bar{display:flex;gap:5px;margin:14px 0;min-height:45px}.piece{display:flex;align-items:center;justify-content:center;flex:1;min-width:0;border-radius:9px;background:#edf1f5;border:1px solid #dbe2e9;color:#526174;font-weight:800}.piece.blue{background:#9bd7ff;border-color:#60b7ee;color:#164b70}.piece.coral{background:#ffad91;border-color:#ee896b;color:#642b1d}.piece.green{background:#b9e7ac;border-color:#8dcc7c;color:#285638}.legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}.legend span{display:inline-flex;gap:6px;align-items:center}.dot{width:13px;height:13px;border-radius:4px;display:inline-block}.dot.blue{background:#60b7ee}.dot.coral{background:#ee896b}.dot.green{background:#8dcc7c}
+    .modes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.mode{border:1px solid #d7dfeb;background:#fff;border-radius:13px;padding:11px 8px;font:inherit;font-weight:750;color:var(--ink);cursor:pointer}.mode[aria-pressed="true"]{background:#263b59;color:#fff;border-color:#263b59}.mode:hover{transform:translateY(-1px)}
+    .exercise{background:#f8fbff;border:1px solid #dce8f3;border-radius:18px;padding:18px;margin-top:15px}.exercise h3{margin:0 0 8px}.question{font-size:1.22rem;font-weight:750;margin:8px 0 14px}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.answer{font:inherit;font-size:1.1rem;border:2px solid #cbd5e1;border-radius:12px;padding:11px 13px;width:150px;background:white}.answer:focus{outline:3px solid #d9efff;border-color:#2385c8}.btn{font:inherit;font-weight:800;border:0;border-radius:12px;padding:12px 16px;cursor:pointer}.primary{background:#263b59;color:white}.secondary{background:#e9f0f8;color:#263b59}.btn:hover{filter:brightness(.97)}.feedback{min-height:28px;margin:10px 0 0;font-weight:750}.feedback.good{color:#27713a}.feedback.try{color:#9b4b24}.hint{background:#fff5ce;border-left:4px solid #e9bf4a;border-radius:10px;padding:12px 14px;margin-top:12px}.hint[hidden]{display:none}.small{font-size:.94rem;color:var(--muted)}
+    .challenge{background:#fff8f1;border:1px dashed #e9b398;border-radius:17px;padding:16px;margin-top:16px}.challenge h3{margin:0 0 8px}.challenge .bar{max-width:560px}.two-inputs{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}.two-inputs label{display:grid;gap:4px;font-weight:700}.two-inputs input{width:100px}.note{font-size:.91rem;color:var(--muted);margin:12px 0 0}.footer{text-align:center;color:var(--muted);font-size:.87rem;padding:12px}
+    @media(max-width:620px){.wrap{padding:14px 12px 28px}.card{padding:16px}.steps{grid-template-columns:1fr}.modes{grid-template-columns:repeat(2,1fr)}.mode{min-height:52px}.question{font-size:1.12rem}.bar{gap:3px}.piece{font-size:.83rem}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="eyebrow">Un ratito de mates, a tu ritmo</div>
+      <h1>La aventura de las fracciones</h1>
+      <p>Primero dibujamos la cantidad. Después elegimos la operación. ¡Vamos paso a paso!</p>
+    </header>
+
+    <section class="card" aria-labelledby="idea-title">
+      <h2 class="section-title" id="idea-title">La idea que siempre ayuda</h2>
+      <div class="steps">
+        <div class="step"><b>1. Encuentra el todo</b>¿Qué cantidad representa la barra entera?</div>
+        <div class="step"><b>2. Mira la fracción</b>El número de abajo dice en cuántas partes iguales se reparte.</div>
+        <div class="step"><b>3. Lee la pregunta</b>¿Buscas una parte, el total o lo que queda?</div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="practice-title">
+      <h2 class="section-title" id="practice-title">Elige qué quieres practicar</h2>
+      <div class="modes" role="group" aria-label="Tipo de ejercicio">
+        <button class="mode" data-mode="part" aria-pressed="true">Calcular una parte</button>
+        <button class="mode" data-mode="total" aria-pressed="false">Averiguar el total</button>
+        <button class="mode" data-mode="left" aria-pressed="false">Calcular lo que queda</button>
+        <button class="mode" data-mode="rest" aria-pressed="false">Fracción del resto</button>
+      </div>
+
+      <div class="exercise" aria-live="polite">
+        <div id="level" class="eyebrow">Una parte de una cantidad</div>
+        <h3 id="question">¿Cuánto es 3/5 de 20 caramelos?</h3>
+        <div id="bar" class="bar" aria-label="Dibujo de la cantidad"></div>
+        <div class="legend" id="legend"></div>
+        <p class="small" id="hint-intro">Escribe solo el número. Si te atascas, pide una pista.</p>
+        <div class="row">
+          <input id="answer" class="answer" type="number" inputmode="numeric" aria-label="Tu respuesta" placeholder="Respuesta">
+          <button id="check" class="btn primary">Comprobar</button>
+          <button id="hint-button" class="btn secondary">Dame una pista</button>
+          <button id="next" class="btn secondary">Otro ejercicio</button>
+        </div>
+        <p id="feedback" class="feedback" role="status"></p>
+        <div id="hint" class="hint" hidden></div>
+      </div>
+
+      <div class="challenge">
+        <h3>Reto: la tarta del problema 28</h3>
+        <p>Jacinto come <b>2/7</b> de la tarta. Gabriela come <b>3/5 de lo que queda</b>.</p>
+        <div class="bar" aria-label="Dos trozos para Jacinto, tres para Gabriela y dos que quedan">
+          <span class="piece blue">J</span><span class="piece blue">J</span>
+          <span class="piece coral">G</span><span class="piece coral">G</span><span class="piece coral">G</span>
+          <span class="piece green">✓</span><span class="piece green">✓</span>
+        </div>
+        <div class="legend"><span><i class="dot blue"></i>Jacinto: 2/7</span><span><i class="dot coral"></i>Gabriela: 3/7</span><span><i class="dot green"></i>Quedan: 2/7</span></div>
+        <p>Quedan 5 trozos. Gabriela coge 3 de esos 5; cada trozo es 1/7 de la tarta entera.</p>
+        <p><b>Lo que come:</b> 3/5 × 5/7 = 3/7. <b>Lo que queda:</b> 5/7 − 3/7 = 2/7.</p>
+      </div>
+    </section>
+    <p class="footer">Puedes practicar sin prisa: equivocarse también sirve para aprender.</p>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const names = { part: 'Una parte de una cantidad', total: 'Averiguar el total', left: 'Calcular lo que queda', rest: 'Una fracción de lo que queda' };
+    let mode = 'part';
+    let exercise = null;
+    const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    function makeExercise() {
+      if (mode === 'part') {
+        const d = rand(2, 6), n = rand(1, d - 1), unit = rand(2, 10), total = d * unit;
+        return { d, n, total, answer: n * unit, question: `¿Cuánto es ${n}/${d} de ${total} caramelos?`, hint: `Divide los ${total} caramelos en ${d} grupos iguales: ${total} ÷ ${d} = ${unit}. Después coge ${n} grupos: ${unit} × ${n} = ${n * unit}.`, colors: ['blue', n, d] };
+      }
+      if (mode === 'total') {
+        const d = rand(2, 6), n = rand(1, d - 1), unit = rand(2, 10), part = n * unit, total = d * unit;
+        return { d, n, part, answer: total, question: `${n}/${d} de una cantidad son ${part}. ¿Cuál es la cantidad entera?`, hint: `${part} representa ${n} partes. Una parte vale ${part} ÷ ${n} = ${unit}. El total tiene ${d} partes: ${unit} × ${d} = ${total}.`, colors: ['coral', n, d] };
+      }
+      if (mode === 'left') {
+        const d = rand(2, 6), n = rand(1, d - 1), unit = rand(2, 10), total = d * unit, remain = (d - n) * unit;
+        return { d, n, total, answer: remain, question: `Hay ${total} galletas. Se comen ${n}/${d}. ¿Cuántas quedan?`, hint: `Si se comen ${n} partes de ${d}, quedan ${d - n} partes. Cada parte vale ${total} ÷ ${d} = ${unit}. Quedan ${d - n} × ${unit} = ${remain} galletas.`, colors: ['green', d - n, d], remain };
+      }
+      const d = 7, first = 2, rest = d - first, second = 3, unit = rand(2, 8), total = d * unit;
+      return { d, n: second, first, total, answer: second * unit, question: `Hay ${total} caramelos. Se comen ${first}/${d}; después, otra persona come 3/5 de lo que queda. ¿Cuántos caramelos come?`, hint: `Al principio, cada una de las ${d} partes tiene ${unit} caramelos. Después de quitar ${first}/${d}, quedan ${rest} partes. Como 3/5 de ${rest} partes son 3 partes, come 3 × ${unit} = ${second * unit} caramelos.` };
+    }
+
+    function drawBar() {
+      const bar = $('bar'); bar.replaceChildren();
+      for (let i = 0; i < exercise.d; i++) {
+        const cell = document.createElement('span'); cell.className = 'piece';
+        if (mode === 'part' && i < exercise.n) cell.classList.add('blue');
+        if (mode === 'total' && i < exercise.n) cell.classList.add('coral');
+        if (mode === 'left') cell.classList.add(i < exercise.n ? 'coral' : 'green');
+        if (mode === 'rest') cell.classList.add(i < exercise.first ? 'blue' : (i < exercise.first + exercise.n ? 'coral' : 'green'));
+        cell.textContent = mode === 'left' && i >= exercise.n ? '✓' : (mode === 'rest' ? (i < exercise.first ? 'J' : (i < exercise.first + exercise.n ? 'G' : '✓')) : '');
+        bar.appendChild(cell);
+      }
+      const l = $('legend'); l.replaceChildren();
+      const items = mode === 'part' ? [['blue','Parte que buscamos'],['','Toda la cantidad']] : mode === 'total' ? [['coral','Parte conocida'],['','Total desconocido']] : mode === 'left' ? [['coral','Comido'],['green','Queda']] : [['blue','Primera persona'],['coral','Segunda persona'],['green','Queda']];
+      for (const [color, label] of items) { const span=document.createElement('span'); span.innerHTML=`<i class="dot ${color}"></i>${label}`; l.appendChild(span); }
+    }
+
+    function loadExercise() {
+      exercise = makeExercise();
+      $('level').textContent = names[mode]; $('question').textContent = exercise.question;
+      $('answer').value = ''; $('feedback').textContent = ''; $('feedback').className = 'feedback';
+      $('hint').hidden = true; $('hint').textContent = ''; drawBar(); $('answer').focus({preventScroll:true});
+    }
+    document.querySelectorAll('.mode').forEach(btn => btn.addEventListener('click', () => {
+      mode = btn.dataset.mode;
+      document.querySelectorAll('.mode').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      loadExercise();
+    }));
+    $('next').addEventListener('click', loadExercise);
+    $('hint-button').addEventListener('click', () => { $('hint').textContent = exercise.hint; $('hint').hidden = false; });
+    $('check').addEventListener('click', () => {
+      const value = Number($('answer').value);
+      const feedback = $('feedback');
+      if ($('answer').value.trim() === '') { feedback.textContent = 'Escribe primero tu respuesta.'; feedback.className = 'feedback try'; return; }
+      if (value === exercise.answer) { feedback.textContent = '¡Exacto! Has identificado bien qué te preguntan.'; feedback.className = 'feedback good'; $('hint').textContent = exercise.hint; $('hint').hidden = false; }
+      else { feedback.textContent = 'Aún no. Mira la barra y prueba una pista.'; feedback.className = 'feedback try'; }
+    });
+    $('answer').addEventListener('keydown', e => { if (e.key === 'Enter') $('check').click(); });
+    loadExercise();
+  </script>
+</body>
+</html>
