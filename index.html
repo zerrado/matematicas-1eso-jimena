@@ -3,43 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fff4f8">
+  <meta name="theme-color" content="#111936">
   <meta name="description" content="Explicaciones visuales y ejercicios de fracciones para 1.º de ESO.">
-  <title>FractiMiau · Fracciones paso a paso</title>
+  <title>FractiJim · Fracciones paso a paso</title>
   <style>
     :root{
-      --ink:#332c49;--muted:#68627a;--paper:#fff;--bg:#fff6fa;--pink:#ffe0eb;--pink-strong:#e96996;
-      --lilac:#ebe4ff;--lilac-strong:#8a70d6;--mint:#ddf6e9;--mint-strong:#31966a;--lemon:#fff2c9;
-      --line:#eee5ef;--shadow:0 12px 34px #4d315015;--radius:24px
+      --ink:#152041;--muted:#5e6680;--paper:#fff;--bg:#f4f7ff;--pink:#ffe0df;--pink-strong:#f26d62;
+      --lilac:#e4e9ff;--lilac-strong:#5267dc;--mint:#dff7ed;--mint-strong:#208d70;--lemon:#fff0ad;
+      --navy:#111936;--blue:#3978ed;--line:#dfe5f3;--shadow:0 16px 38px #142a6417;--radius:22px
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;scroll-padding-top:16px}
-    body{margin:0;background:radial-gradient(ellipse at 12% 0%,#ffe5ef 0,transparent 29rem),radial-gradient(ellipse at 95% 18%,#ebe6ff 0,transparent 25rem),var(--bg);color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.52}
+    body{margin:0;background:linear-gradient(#ffffff80 1px,transparent 1px),linear-gradient(90deg,#ffffff80 1px,transparent 1px),radial-gradient(ellipse at 10% 0%,#dce7ff 0,transparent 30rem),radial-gradient(ellipse at 95% 16%,#ffe2dc 0,transparent 26rem),var(--bg);background-size:28px 28px,28px 28px,auto,auto,auto;color:var(--ink);font-family:"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.52}
     button,input{font:inherit}
     a{color:#684fc0}
     .shell{max-width:1000px;margin:0 auto;padding:clamp(12px,3vw,26px) clamp(12px,3vw,24px) 48px}
     .topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 2px 18px}
-    .brand{display:flex;align-items:center;gap:9px;font-weight:950;letter-spacing:-.04em;font-size:1.15rem}
-    .brand-icon{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:var(--pink);font-size:1.55rem;box-shadow:0 4px 0 #f7c4d5}
+    .brand{display:flex;align-items:center;gap:9px;font-weight:950;letter-spacing:-.04em;font-size:1.2rem;color:var(--navy)}
+    .brand-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy),#385bd5);color:#fff;font-size:.94rem;font-style:italic;letter-spacing:-.08em;box-shadow:4px 4px 0 #ff8b79;transform:skew(-5deg)}
     .nav{display:flex;gap:7px;flex-wrap:wrap}
-    .nav a{text-decoration:none;font-size:.88rem;font-weight:800;background:#fff;padding:9px 13px;border:1px solid var(--line);border-radius:999px;color:var(--ink)}
-    .hero{position:relative;overflow:hidden;text-align:center;background:linear-gradient(135deg,#fff 10%,#fff2f7 60%,#f4f0ff);border:1px solid #f0dce8;border-radius:30px;padding:clamp(23px,5vw,46px) 18px;margin-bottom:20px;box-shadow:var(--shadow)}
-    .hero:before,.hero:after{content:"✦";position:absolute;color:#f6afc7;font-size:1.8rem}
-    .hero:before{left:7%;top:17%}.hero:after{right:8%;bottom:15%;color:#b5a0f2}
-    .hero-tag{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:var(--lemon);padding:6px 12px;font-size:.82rem;font-weight:900}
-    h1{font-size:clamp(2.05rem,8vw,4rem);line-height:1.04;letter-spacing:-.055em;margin:15px 0 10px}
-    .hero p{max-width:650px;margin:0 auto;color:var(--muted);font-size:clamp(1rem,2.6vw,1.15rem)}
-    .mascot{display:block;font-size:clamp(3.2rem,12vw,5rem);line-height:1.1;margin:12px auto 2px;filter:drop-shadow(0 5px 0 #f4d5e2);animation:bob 3s ease-in-out infinite}
-    @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-5px) rotate(3deg)}}
-    .hero-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:17px}
-    .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-size:.83rem;font-weight:800}
+    .nav a{text-decoration:none;font-size:.88rem;font-weight:800;background:#fff;padding:9px 13px;border:1px solid var(--line);border-radius:10px;color:var(--ink);box-shadow:0 3px 0 #d9e1f3}
+    .hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(250px,.85fr);align-items:center;background:linear-gradient(125deg,#111936 0%,#1b2e68 66%,#315bd2 100%);border:1px solid #243c83;border-radius:28px;padding:clamp(24px,5vw,50px) clamp(20px,5vw,52px) 0;margin-bottom:20px;box-shadow:0 18px 45px #12205236;color:#fff}
+    .hero:before{content:"";position:absolute;width:230px;height:230px;border:34px solid #ffffff0e;border-radius:50%;right:-65px;top:-90px}
+    .hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 42px,#ffffff06 43px 45px);pointer-events:none}
+    .hero-copy{position:relative;z-index:2;padding-bottom:clamp(28px,5vw,50px)}
+    .hero-tag{display:inline-flex;align-items:center;gap:7px;border-radius:8px;background:var(--lemon);color:#2b3150;padding:7px 12px;font-size:.82rem;font-weight:900;transform:rotate(-1deg)}
+    h1{font-size:clamp(2.35rem,7vw,4.7rem);line-height:.96;letter-spacing:-.06em;margin:18px 0 12px;text-transform:uppercase;font-style:italic;text-shadow:4px 4px 0 #3978ed}
+    .hero p{max-width:580px;margin:0;color:#e9edff;font-size:clamp(1rem,2.6vw,1.15rem)}
+    .mascot{position:relative;z-index:1;display:block;width:min(100%,390px);align-self:end;justify-self:center;filter:drop-shadow(0 14px 22px #080d24aa);animation:bob 3s ease-in-out infinite}
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    .hero-chips{display:flex;justify-content:flex-start;gap:8px;flex-wrap:wrap;margin-top:18px}
+    .chip{background:#ffffff13;border:1px solid #ffffff38;border-radius:8px;padding:7px 11px;font-size:.83rem;font-weight:800;color:#fff}
     .section{margin:22px 0;scroll-margin-top:12px}
     .section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 2px 12px}
     h2{margin:0;font-size:clamp(1.45rem,4vw,2rem);letter-spacing:-.035em}
     .section-heading p{margin:0;color:var(--muted);font-size:.92rem}
     .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(16px,3vw,24px);box-shadow:var(--shadow)}
     .learn-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-    .learn-card{border:1px solid var(--line);border-radius:20px;padding:17px;background:#fff}
+    .learn-card{border:1px solid var(--line);border-radius:16px;padding:17px;background:#fff;border-top:4px solid var(--blue)}
     .learn-card:nth-child(1){background:linear-gradient(145deg,#fff,#fff0f5)}
     .learn-card:nth-child(2){background:linear-gradient(145deg,#fff,#f4f0ff)}
     .learn-card:nth-child(3){background:linear-gradient(145deg,#fff,#effbf4)}
@@ -66,9 +67,9 @@
     .level-select{background:#fff;border:2px solid #e7ddec;border-radius:12px;padding:10px 35px 10px 12px;color:var(--ink);font-weight:850;min-height:46px}
     .level-help{color:var(--muted);font-size:.88rem}
     .modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
-    .mode{border:1px solid #e7ddec;background:#fff;border-radius:16px;padding:11px 9px;min-height:70px;text-align:left;color:var(--ink);cursor:pointer;transition:transform .15s,border-color .15s,background .15s}
+    .mode{border:1px solid #dce3f2;background:#fff;border-radius:13px;padding:11px 9px;min-height:70px;text-align:left;color:var(--ink);cursor:pointer;transition:transform .15s,border-color .15s,background .15s}
     .mode:hover{transform:translateY(-2px)}
-    .mode[aria-pressed="true"]{background:#fae8f1;border:2px solid var(--pink-strong);padding:10px 8px;box-shadow:0 4px 0 #f4cada}
+    .mode[aria-pressed="true"]{background:#eaf0ff;border:2px solid var(--blue);padding:10px 8px;box-shadow:0 4px 0 #b9c9f6}
     .mode b{display:block;font-size:.93rem;line-height:1.2}.mode span{display:block;color:var(--muted);font-size:.75rem;margin-top:4px}
     .mode-icon{font-size:1.2rem;margin-right:4px}
     .exercise{margin-top:15px;background:#fff;border:1px solid #ede3f0;border-radius:21px;padding:clamp(15px,3vw,22px)}
@@ -92,8 +93,8 @@
     .answer:focus{outline:3px solid #f9d9e6;border-color:var(--pink-strong)}
     .btn{border:0;border-radius:13px;min-height:49px;padding:10px 13px;font-weight:900;cursor:pointer;transition:transform .15s,filter .15s}
     .btn:hover{transform:translateY(-1px);filter:brightness(.98)}
-    .btn.primary{background:#785bb8;color:white;box-shadow:0 4px 0 #5f4698}
-    .btn.soft{background:#f4effb;color:#544278;border:1px solid #e5daf6}
+    .btn.primary{background:var(--blue);color:white;box-shadow:0 4px 0 #244faf}
+    .btn.soft{background:#eef2ff;color:#314a9d;border:1px solid #d9e1fa}
     .btn.next{background:#ffebd2;color:#6d4a1c;border:1px solid #f4d7ac}
     .feedback{min-height:28px;margin:12px 0 0;font-weight:850}.feedback.good{color:#228353}.feedback.try{color:#a64d65}
     .hint-box,.solution{margin-top:11px;border-radius:14px;padding:12px 14px;background:#fff8e2;border:1px solid #f1e2b5}
@@ -104,31 +105,33 @@
     .answer-tip{font-size:.84rem;color:var(--muted);margin:7px 1px 0}
     .video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
     .video-card{border-radius:19px;border:1px solid var(--line);background:#fff;padding:17px;display:flex;flex-direction:column;align-items:flex-start}
-    .video-card .play{width:45px;height:45px;border-radius:15px;display:grid;place-items:center;background:#ffe7ef;color:#cc527d;font-size:1.35rem;margin-bottom:10px}
+    .video-card .play{width:45px;height:45px;border-radius:12px;display:grid;place-items:center;background:#e8edff;color:#345bd1;font-size:1.35rem;margin-bottom:10px}
     .video-card h3{font-size:1.05rem;line-height:1.25;margin:0 0 6px}.video-card p{color:var(--muted);margin:0 0 13px;font-size:.91rem}
     .video-card a{margin-top:auto;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:900;background:#f4effb;border-radius:12px;padding:10px 12px}
     .footer{text-align:center;color:var(--muted);font-size:.86rem;padding:20px 4px}
     :focus-visible{outline:3px solid #795db8;outline-offset:2px}
-    @media(max-width:760px){.modes{grid-template-columns:repeat(2,minmax(0,1fr))}.mode{text-align:center;min-height:68px}.answer-row{grid-template-columns:repeat(2,minmax(0,1fr))}.answer-row .answer{grid-column:1/-1}.video-grid{grid-template-columns:1fr}}
-    @media(max-width:540px){.shell{padding:10px 11px 32px}.topline{align-items:flex-start}.brand{font-size:1rem}.brand-icon{width:37px;height:37px;border-radius:13px}.nav{justify-content:flex-end}.nav a{padding:8px 10px;font-size:.79rem}.hero{border-radius:23px;padding:25px 15px}.section{margin:17px 0}.section-heading{display:block}.section-heading p{margin-top:3px}.learn-grid{grid-template-columns:1fr}.learn-card{padding:15px}.story{padding:14px}.practice-card{padding:13px}.mode{padding:10px 6px;min-height:72px}.mode b{font-size:.85rem}.mode span{font-size:.72rem}.exercise{padding:13px}.piece{min-height:46px;border-radius:8px;gap:2px;font-size:clamp(.58rem,2.8vw,.8rem);overflow:hidden}.bar{gap:3px}.answer-row{gap:8px}.btn{font-size:.9rem;padding:9px 8px}.answer-tip{font-size:.8rem}}
+    @media(max-width:760px){.hero{grid-template-columns:1fr;text-align:center;padding-bottom:0}.hero-copy{padding-bottom:0}.hero-chips{justify-content:center}.mascot{width:min(78%,310px);margin-top:4px}.modes{grid-template-columns:repeat(2,minmax(0,1fr))}.mode{text-align:center;min-height:68px}.answer-row{grid-template-columns:repeat(2,minmax(0,1fr))}.answer-row .answer{grid-column:1/-1}.video-grid{grid-template-columns:1fr}}
+    @media(max-width:540px){.shell{padding:10px 11px 32px}.topline{align-items:flex-start}.brand{font-size:1rem}.brand-icon{width:37px;height:37px;border-radius:10px}.nav{justify-content:flex-end}.nav a{padding:8px 9px;font-size:.76rem}.hero{border-radius:21px;padding:24px 15px 0}h1{font-size:clamp(2.3rem,14vw,3.5rem)}.mascot{width:min(92%,300px)}.section{margin:17px 0}.section-heading{display:block}.section-heading p{margin-top:3px}.learn-grid{grid-template-columns:1fr}.learn-card{padding:15px}.story{padding:14px}.practice-card{padding:13px}.mode{padding:10px 6px;min-height:72px}.mode b{font-size:.85rem}.mode span{font-size:.72rem}.exercise{padding:13px}.piece{min-height:46px;border-radius:8px;gap:2px;font-size:clamp(.58rem,2.8vw,.8rem);overflow:hidden}.bar{gap:3px}.answer-row{gap:8px}.btn{font-size:.9rem;padding:9px 8px}.answer-tip{font-size:.8rem}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   </style>
 </head>
 <body>
 <main class="shell">
   <div class="topline">
-    <div class="brand"><span class="brand-icon" aria-hidden="true">🐱</span> FractiMiau</div>
+    <div class="brand"><span class="brand-icon" aria-hidden="true">FJ</span> FractiJim</div>
     <nav class="nav" aria-label="Secciones">
       <a href="#aprende">Aprender</a><a href="#practica">Practicar</a><a href="#videos">Vídeos</a>
     </nav>
   </div>
 
   <header class="hero">
-    <span class="hero-tag">🌸 Mates sin agobios · 1.º ESO</span>
-    <span class="mascot" role="img" aria-label="Gatita profesora">🐱</span>
-    <h1>La aventura de las fracciones</h1>
-    <p>Primero entendemos qué nos preguntan. Luego lo dibujamos y calculamos un pasito cada vez. ¡Tú puedes!</p>
-    <div class="hero-chips"><span class="chip">🍓 Ejercicios por niveles</span><span class="chip">✨ Pistas paso a paso</span><span class="chip">📱 Hecha para móvil</span></div>
+    <div class="hero-copy">
+      <span class="hero-tag">⚡ Entrena tus fracciones · 1.º ESO</span>
+      <h1>Sube de nivel con las fracciones</h1>
+      <p>Entiende la misión, dibuja las partes y resuelve cada reto paso a paso. Sin prisas y sin trucos.</p>
+      <div class="hero-chips"><span class="chip">🎯 Retos por niveles</span><span class="chip">✨ Pistas paso a paso</span><span class="chip">📱 Hecha para móvil</span></div>
+    </div>
+    <img class="mascot" src="assets/fractijim-anime.png" alt="Estudiante anime señalando una idea y sosteniendo un cuaderno con fracciones" width="1308" height="1202">
   </header>
 
   <section class="section" id="aprende" aria-labelledby="learn-heading">
@@ -204,7 +207,7 @@
         <div class="answer-row">
           <input class="answer" id="answer" type="number" inputmode="numeric" pattern="[0-9]*" aria-label="Escribe la respuesta como número entero" placeholder="Tu respuesta">
           <button class="btn primary" id="check">Comprobar 💫</button>
-          <button class="btn soft" id="hint-button">Una pista 🐾</button>
+          <button class="btn soft" id="hint-button">Una pista 💡</button>
           <button class="btn next" id="next">Otro ejercicio ↻</button>
         </div>
         <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
@@ -244,7 +247,7 @@
       </article>
     </div>
   </section>
-  <footer class="footer">Hecho con mucho cariño para Jimena 🌸 · Equivocarse también es parte de aprender.</footer>
+  <footer class="footer"><b>FractiJim</b> · Hecho con mucho cariño para Jimena ⚡ Equivocarse también es parte de aprender.</footer>
 </main>
 
 <script>
@@ -329,7 +332,7 @@
     items.forEach(item=>{const span=document.createElement("span");span.innerHTML='<i class="swatch '+item[0]+'"></i>'+item[1];legend.appendChild(span)});
     bar.setAttribute("aria-label","La barra tiene "+exercise.d+" partes iguales; los colores muestran qué partes se toman y cuáles quedan.");
   }
-  function showHint(){const h=$("hint");h.innerHTML="<strong>🐾 Pista</strong>"+exercise.hint;h.hidden=false}
+  function showHint(){const h=$("hint");h.innerHTML="<strong>💡 Pista</strong>"+exercise.hint;h.hidden=false}
   function showSolution(){
     const box=$("solution");box.innerHTML="<h3>✨ Vamos paso a paso</h3><ol>"+exercise.steps.map(s=>"<li>"+s+"</li>").join("")+"</ol>";box.hidden=false;
   }
@@ -344,8 +347,8 @@
     if(currentSolved)return;
     attempts++;$("progress").textContent=attempts;
     const value=Number($("answer").value),feedback=$("feedback");
-    if(value===exercise.answer){score++;currentSolved=true;$("score").textContent=score;feedback.textContent=["¡Exacto! 🌸","¡Lo has conseguido! ✨","¡Muy bien pensado! 🐱"][rand(0,2)];feedback.className="feedback good";showSolution()}
-    else{feedback.textContent="Casi. Relee qué te preguntan y prueba con la pista 🐾";feedback.className="feedback try"}
+    if(value===exercise.answer){score++;currentSolved=true;$("score").textContent=score;feedback.textContent=["¡Exacto! ⚡","¡Nivel superado! ✨","¡Muy bien pensado! 🎯"][rand(0,2)];feedback.className="feedback good";showSolution()}
+    else{feedback.textContent="Casi. Relee qué te preguntan y prueba con la pista 💡";feedback.className="feedback try"}
   });
   $("answer").addEventListener("keydown",e=>{if(e.key==="Enter")$("check").click()});
   newExercise();
