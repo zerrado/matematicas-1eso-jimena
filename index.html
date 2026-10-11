@@ -190,6 +190,7 @@
           <option value="easy">🌱 Suave — para hacer mentalmente</option>
           <option value="medium">🌼 Intermedio</option>
           <option value="hard">🌟 Reto</option>
+          <option value="school">🏫 Colegio — números altos</option>
         </select>
         <span class="level-help" id="level-help">Fracciones pequeñas y números fáciles.</span>
       </div>
@@ -217,7 +218,7 @@
         <div class="hint-box" id="hint" hidden></div>
         <div class="solution" id="solution" hidden></div>
       </div>
-      <p class="note-small">Empieza en «Suave»: aparecen fracciones pequeñas como 1/2, 1/3 y 1/4 para practicar de cabeza. Cada tipo tiene ejercicios en los tres niveles.</p>
+      <p class="note-small">Empieza en «Suave» para practicar de cabeza. Cuando domine la estrategia, «Colegio» plantea enunciados con números altos como 135, 195, 240 o 432.</p>
     </div>
   </section>
 
@@ -262,48 +263,93 @@
     left:{title:"🧁 Calcular lo que queda",short:"calcular lo que queda",name:"galletas"},
     rest:{title:"🍡 Una fracción de lo que queda",short:"calcular una fracción del resto",name:"caramelos"}
   };
-  const levelNames={easy:"🌱 Suave",medium:"🌼 Intermedio",hard:"🌟 Reto"};
-  const levelHelp={easy:"Fracciones pequeñas y números fáciles.",medium:"Un poco más de variedad.",hard:"Denominadores y cantidades mayores."};
+  const levelNames={easy:"🌱 Suave",medium:"🌼 Intermedio",hard:"🌟 Reto",school:"🏫 Colegio"};
+  const levelHelp={easy:"Fracciones pequeñas y números fáciles.",medium:"Más contextos y algo más de cálculo.",hard:"Denominadores y cantidades mayores.",school:"Como en las fichas del cole: números altos y enunciados variados."};
   let mode="random",level="easy",exercise=null,attempts=0,score=0,currentSolved=false;
   const recent=[];
   const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+  const pick=arr=>arr[rand(0,arr.length-1)];
   const frac=(n,d)=>'<span class="fraction" aria-label="'+n+" sobre "+d+'"><span>'+n+'</span><span>'+d+'</span></span>';
-  const denomFor=()=>level==="easy"?[2,3,4][rand(0,2)]:level==="medium"?[4,5,6,8][rand(0,3)]:[6,7,8,9,10,12][rand(0,5)];
-  const unitFor=()=>level==="easy"?rand(1,5):level==="medium"?rand(3,9):rand(6,15);
+  const denomFor=()=>level==="easy"?pick([2,3,4]):level==="medium"?pick([3,4,5,6,8]):level==="hard"?pick([6,7,8,9,10,12]):pick([6,8,9,10,12,15,16,18]);
+  const unitFor=()=>level==="easy"?rand(1,5):level==="medium"?rand(3,10):level==="hard"?rand(6,18):pick([12,13,15,16,18,20,24,25,27,30,32,36,40]);
+  const partStories=[
+    (t,f)=>({noun:"libros",question:'En una biblioteca hay <b>'+t+'</b> libros. '+f+' son novelas de aventuras. ¿Cuántas novelas de aventuras hay?'}),
+    (t,f)=>({noun:"euros",question:'Jimena ha ahorrado <b>'+t+'</b> euros y gasta '+f+' de sus ahorros en un regalo. ¿Cuántos euros gasta?'}),
+    (t,f)=>({noun:"kilómetros",question:'Una ruta mide <b>'+t+'</b> kilómetros. El grupo recorre '+f+' de la ruta por la mañana. ¿Cuántos kilómetros recorre?'}),
+    (t,f)=>({noun:"alumnos",question:'En un colegio hay <b>'+t+'</b> alumnos. '+f+' participa en actividades deportivas. ¿Cuántos alumnos participan?'}),
+    (t,f)=>({noun:"botellas",question:'Un almacén recibe <b>'+t+'</b> botellas de agua y envía '+f+' a una tienda. ¿Cuántas botellas envía?'}),
+    (t,f)=>({noun:"cromos",question:'Una colección tiene <b>'+t+'</b> cromos. '+f+' son de animales. ¿Cuántos cromos de animales hay?'}),
+    (t,f)=>({noun:"entradas",question:'Para un concierto hay <b>'+t+'</b> entradas. Se vende '+f+' durante la primera semana. ¿Cuántas entradas se venden?'}),
+    (t,f)=>({noun:"litros",question:'Un depósito contiene <b>'+t+'</b> litros de agua. Se utiliza '+f+' para regar. ¿Cuántos litros se utilizan?'})
+  ];
+  const totalStories=[
+    (p,f)=>({noun:"libros",question:f+' de los libros de una biblioteca son de aventuras. Son <b>'+p+'</b> libros. ¿Cuántos libros hay en total?'}),
+    (p,f)=>({noun:"kilómetros",question:'Una ciclista ha recorrido '+f+' de una ruta, es decir, <b>'+p+'</b> kilómetros. ¿Cuántos kilómetros mide la ruta completa?'}),
+    (p,f)=>({noun:"alumnos",question:f+' del alumnado participa en una excursión. Participan <b>'+p+'</b> alumnos. ¿Cuántos alumnos hay en total?'}),
+    (p,f)=>({noun:"entradas",question:'Se ha vendido '+f+' de las entradas disponibles: <b>'+p+'</b> entradas. ¿Cuántas entradas había al principio?'}),
+    (p,f)=>({noun:"litros",question:'Un depósito está lleno hasta '+f+' de su capacidad y contiene <b>'+p+'</b> litros. ¿Cuál es su capacidad total?'}),
+    (p,f)=>({noun:"euros",question:'Jimena ha gastado '+f+' de sus ahorros, que son <b>'+p+'</b> euros. ¿Cuántos euros tenía ahorrados?'}),
+    (p,f)=>({noun:"cromos",question:f+' de una colección son cromos repetidos. Hay <b>'+p+'</b> repetidos. ¿Cuántos cromos tiene la colección?'}),
+    (p,f)=>({noun:"páginas",question:'Álex ha leído '+f+' de un libro, exactamente <b>'+p+'</b> páginas. ¿Cuántas páginas tiene el libro?'})
+  ];
+  const leftStories=[
+    (t,f)=>({noun:"galletas",question:'Hay <b>'+t+'</b> galletas. Se comen '+f+' del total. ¿Cuántas galletas quedan?'}),
+    (t,f)=>({noun:"euros",question:'Marta tiene <b>'+t+'</b> euros y gasta '+f+'. ¿Cuántos euros le quedan?'}),
+    (t,f)=>({noun:"kilómetros",question:'Una carrera mide <b>'+t+'</b> kilómetros. Leo ya ha recorrido '+f+'. ¿Cuántos kilómetros le faltan?'}),
+    (t,f)=>({noun:"páginas",question:'Un libro tiene <b>'+t+'</b> páginas. Jimena ha leído '+f+'. ¿Cuántas páginas le quedan por leer?'}),
+    (t,f)=>({noun:"entradas",question:'Había <b>'+t+'</b> entradas para un partido y se ha vendido '+f+'. ¿Cuántas entradas quedan?'}),
+    (t,f)=>({noun:"litros",question:'Un depósito contiene <b>'+t+'</b> litros. Se consume '+f+' del agua. ¿Cuántos litros quedan?'}),
+    (t,f)=>({noun:"cromos",question:'Pablo tiene <b>'+t+'</b> cromos y regala '+f+' de su colección. ¿Cuántos cromos conserva?'}),
+    (t,f)=>({noun:"árboles",question:'En una finca hay <b>'+t+'</b> árboles. Se poda '+f+' del total. ¿Cuántos árboles quedan sin podar?'})
+  ];
+  const restStories=[
+    (t,f1,f2)=>({noun:"caramelos",question:'Hay <b>'+t+'</b> caramelos. Primero se aparta '+f1+' del total; después se reparte '+f2+' de lo que queda. ¿Cuántos caramelos se reparten en segundo lugar?'}),
+    (t,f1,f2)=>({noun:"euros",question:'Lucas tiene <b>'+t+'</b> euros. Gasta '+f1+' en un libro y luego '+f2+' del dinero restante en un juego. ¿Cuántos euros gasta en el juego?'}),
+    (t,f1,f2)=>({noun:"litros",question:'Un depósito contiene <b>'+t+'</b> litros. Se utiliza '+f1+' por la mañana y después '+f2+' del agua que queda. ¿Cuántos litros se utilizan después?'}),
+    (t,f1,f2)=>({noun:"páginas",question:'Un libro tiene <b>'+t+'</b> páginas. Sara lee '+f1+' el lunes y '+f2+' de las páginas restantes el martes. ¿Cuántas páginas lee el martes?'}),
+    (t,f1,f2)=>({noun:"entradas",question:'Hay <b>'+t+'</b> entradas. El viernes se vende '+f1+' y el sábado se vende '+f2+' de las que quedan. ¿Cuántas entradas se venden el sábado?'}),
+    (t,f1,f2)=>({noun:"cromos",question:'Una colección tiene <b>'+t+'</b> cromos. Se guardan '+f1+' en un álbum y luego '+f2+' de los restantes en otro. ¿Cuántos cromos van al segundo álbum?'})
+  ];
   function makeExercise(activeMode){
     if(activeMode==="rest"){
-      const d=level==="easy"?[4,5][rand(0,1)]:level==="medium"?[5,6,7][rand(0,2)]:[7,8,9,10][rand(0,3)];
+      const d=level==="easy"?pick([4,5]):level==="medium"?pick([5,6,7]):level==="hard"?pick([7,8,9,10,12]):pick([8,9,10,12,15,16]);
       const first=level==="easy"?1:rand(1,d-2),remaining=d-first,second=rand(1,remaining-1),unit=unitFor(),total=d*unit;
+      const story=pick(restStories)(total,frac(first,d),frac(second,remaining));
       return{mode:activeMode,d,first,remaining,second,unit,total,answer:second*unit,
-        question:'Hay <b>'+total+'</b> '+modeInfo.rest.name+'. Primero se apartan '+frac(first,d)+' del total; luego se toma '+frac(second,remaining)+' de lo que queda. ¿Cuántos caramelos se toman en segundo lugar?',
-        hint:"Primero averigua cuántos caramelos quedan después de apartar "+frac(first,d)+". La segunda fracción se aplica solo a esa cantidad.",
-        steps:["El total se divide en "+d+" partes iguales: "+total+" ÷ "+d+" = "+unit+" caramelos por parte.",
-          "La primera persona aparta "+first+" partes. Quedan "+d+" − "+first+" = "+remaining+" partes, es decir, "+remaining+" × "+unit+" = "+(remaining*unit)+" caramelos.",
-          frac(second,remaining)+" de las "+remaining+" partes que quedan son "+second+" partes: "+unit+" × "+second+" = "+(second*unit)+" caramelos."],
+        question:story.question,
+        hint:"Primero calcula cuánto queda después de la primera fracción. La segunda fracción se aplica solo a esa nueva cantidad.",
+        steps:["El total se divide en "+d+" partes iguales: "+total+" ÷ "+d+" = "+unit+" "+story.noun+" por parte.",
+          "Después del primer paso quedan "+d+" − "+first+" = "+remaining+" partes: "+remaining+" × "+unit+" = "+(remaining*unit)+" "+story.noun+".",
+          frac(second,remaining)+" de lo que queda son "+second+" partes: "+unit+" × "+second+" = "+(second*unit)+" "+story.noun+"."],
         labels:["Primero aparta","Toma la segunda persona","Queda"]};
     }
     const d=denomFor(),n=rand(1,d-1),unit=unitFor(),total=d*unit,part=n*unit;
-    if(activeMode==="part")return{mode:activeMode,d,n,unit,total,answer:part,
-      question:'¿Cuántos '+modeInfo.part.name+' son '+frac(n,d)+' de <b>'+total+'</b>?',
+    if(activeMode==="part"){
+      const story=pick(partStories)(total,frac(n,d));
+      return{mode:activeMode,d,n,unit,total,answer:part,
+      question:story.question,
       hint:"El denominador "+d+" te dice en cuántos grupos iguales repartir los "+total+". Luego coge "+n+" de esos grupos.",
-      steps:["Repartimos el total en "+d+" grupos iguales: "+total+" ÷ "+d+" = "+unit+" en cada grupo.",
-        "El numerador "+n+" indica que cogemos "+n+" grupos: "+unit+" × "+n+" = "+part+".",
-        "Respuesta: "+frac(n,d)+" de "+total+" son "+part+" "+modeInfo.part.name+"."],
-      labels:["Parte que buscamos","Toda la cantidad"]};
-    if(activeMode==="total")return{mode:activeMode,d,n,unit,part,answer:total,
-      question:frac(n,d)+' de las pegatinas son <b>'+part+'</b>. ¿Cuántas pegatinas hay en total?',
+      steps:["Repartimos el total en "+d+" grupos iguales: "+total+" ÷ "+d+" = "+unit+" "+story.noun+" en cada grupo.",
+        "El numerador "+n+" indica que cogemos "+n+" grupos: "+unit+" × "+n+" = "+part+" "+story.noun+".",
+        "Respuesta: la cantidad buscada es "+part+" "+story.noun+"."],
+      labels:["Parte que buscamos","Toda la cantidad"]};}
+    if(activeMode==="total"){
+      const story=pick(totalStories)(part,frac(n,d));
+      return{mode:activeMode,d,n,unit,part,answer:total,
+      question:story.question,
       hint:"La parte conocida, "+part+", está formada por "+n+" grupos iguales. Averigua cuánto vale un grupo y reconstruye los "+d+" grupos.",
-      steps:["Los "+part+" conocidos representan "+n+" grupos. Cada grupo vale "+part+" ÷ "+n+" = "+unit+".",
-        "El total tiene "+d+" grupos iguales: "+unit+" × "+d+" = "+total+".",
-        "Respuesta: en total hay "+total+" pegatinas. También puedes escribirlo como "+part+" ÷ "+frac(n,d)+" = "+total+"."],
-      labels:["Parte conocida","Total desconocido"]};
+      steps:["Los "+part+" "+story.noun+" conocidos representan "+n+" grupos. Cada grupo vale "+part+" ÷ "+n+" = "+unit+".",
+        "El total tiene "+d+" grupos iguales: "+unit+" × "+d+" = "+total+" "+story.noun+".",
+        "También puede escribirse así: "+part+" ÷ "+frac(n,d)+" = "+total+"."],
+      labels:["Parte conocida","Total desconocido"]};}
     const rest=d-n;
+    const story=pick(leftStories)(total,frac(n,d));
     return{mode:activeMode,d,n,unit,total,answer:rest*unit,
-      question:'Hay <b>'+total+'</b> galletas. Se comen '+frac(n,d)+' del total. ¿Cuántas galletas quedan?',
-      hint:"Si el total tiene "+d+" partes y se comen "+n+", ¿cuántas partes quedan? Cada parte tiene "+unit+" galletas.",
-      steps:["El denominador "+d+" divide las "+total+" galletas en partes iguales: "+total+" ÷ "+d+" = "+unit+" por parte.",
-        "Se comen "+n+" partes; quedan "+d+" − "+n+" = "+rest+" partes.",
-        "Calculamos lo que queda: "+rest+" × "+unit+" = "+(rest*unit)+" galletas."],
+      question:story.question,
+      hint:"Si el total tiene "+d+" partes y se utilizan "+n+", ¿cuántas partes quedan? Cada parte vale "+unit+" "+story.noun+".",
+      steps:["Dividimos el total en "+d+" partes iguales: "+total+" ÷ "+d+" = "+unit+" "+story.noun+" por parte.",
+        "Se utilizan "+n+" partes; quedan "+d+" − "+n+" = "+rest+" partes.",
+        "Calculamos lo que queda: "+rest+" × "+unit+" = "+(rest*unit)+" "+story.noun+"."],
       labels:["Comido","Queda"],rest};
   }
   function newExercise(){
